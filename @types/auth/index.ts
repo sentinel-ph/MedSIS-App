@@ -1,3 +1,5 @@
+
+// User Interface Types ( Based on AuthContext file ) 
 export interface User {
   id: string;
   student_id: string;
@@ -26,7 +28,7 @@ export interface User {
   created_at?: string;
   updated_at?: string;
 }
-
+// AuthContext Interface Types ( Based on AuthContext file ) 
 export interface AuthContextType {
   user: User | null;
   login: (userData: User) => Promise<void>;
