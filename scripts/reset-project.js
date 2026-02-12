@@ -6,6 +6,10 @@
  * You can remove the `reset-project` script from package.json and safely delete this file after running it.
  */
 
+/**
+Danger: Running this script will lost all current files this is for normal installation and will be deleted later on 
+**/
+
 const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
