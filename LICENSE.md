@@ -2,13 +2,13 @@
 
 **MedSIS App - Medical Student Information System**  
 **Version 1.0.0**  
-**Copyright © 2025 EduiSync. All Rights Reserved.**
+**Copyright © 2025 MSIS. All Rights Reserved.**
 
 ---
 
 ## License Grant
 
-This software and associated documentation files (the "Software") are the proprietary property of EduiSync and are protected by copyright laws and international treaty provisions. This license grants limited rights to use the Software under the following terms and conditions.
+This software and associated documentation files (the "Software") are the proprietary property of MSIS and are protected by copyright laws and international treaty provisions. This license grants limited rights to use the Software under the following terms and conditions.
 
 ## Terms and Conditions
 
@@ -33,7 +33,7 @@ You may NOT:
 
 ### 3. Intellectual Property Rights
 
-All rights, title, and interest in and to the Software, including all intellectual property rights, remain with EduiSync. This license does not grant you any rights to trademarks, service marks, or trade names of EduiSync or Southwestern University PHINMA.
+All rights, title, and interest in and to the Software, including all intellectual property rights, remain with MSIS. This license does not grant you any rights to trademarks, service marks, or trade names of MSIS or Southwestern University PHINMA.
 
 ### 4. Data Privacy and Security
 
@@ -41,7 +41,7 @@ By using this Software, you agree to:
 - Comply with the Data Privacy Act of 2012 (Republic Act No. 10173)
 - Protect sensitive student and academic information
 - Use the Software only for authorized educational purposes
-- Report any security vulnerabilities to security@eduisync.io
+- Report any security vulnerabilities to security@msis.eduisync.io
 
 ### 5. Confidentiality
 
@@ -61,11 +61,11 @@ This Software is provided exclusively for:
 
 ### 7. Warranty Disclaimer
 
-THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. EDUISYNC DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE OR UNINTERRUPTED.
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. MSIS DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE OR UNINTERRUPTED.
 
 ### 8. Limitation of Liability
 
-IN NO EVENT SHALL EDUISYNC BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE.
+IN NO EVENT SHALL MSIS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE.
 
 ### 9. Termination
 
@@ -80,7 +80,7 @@ This license shall be governed by and construed in accordance with the laws of t
 
 ### 11. Updates and Modifications
 
-EduiSync reserves the right to:
+MSIS reserves the right to:
 - Update or modify the Software at any time
 - Change the terms of this license with notice
 - Discontinue support or access to the Software
@@ -102,12 +102,12 @@ See `package.json` for complete list of dependencies and their licenses.
 ### 13. Contact Information
 
 **License Inquiries:**
-- Email: legal@eduisync.io
+- Email: legal@msis.eduisync.io
 - Website: https://msis.eduisync.io
 
 **Technical Support:**
-- Email: support@eduisync.io
-- Security: security@eduisync.io
+- Email: support@msis.eduisync.io
+- Security: security@msis.eduisync.io
 
 **Institution Contact:**
 - Southwestern University PHINMA
@@ -123,8 +123,8 @@ If you do not agree to these terms, do not download, install, or use the Softwar
 
 ---
 
-**EduiSync**  
+**MSIS Development Team**  
 **Medical Student Information System (MedSIS)**  
 **Version 1.0.0 - December 5, 2025**
 
-**Copyright © 2025 EduiSync. All Rights Reserved.**
+**Copyright © 2025 MSIS. All Rights Reserved.**
