@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { API_BASE_URL } from '@/constants/Config';
 import { User, Message, GetUsersResponse, SendMessageRequest } from '@/@types/screens/messages';
 import axios from 'axios';
+import { messageStorage } from '@/lib/messageStorage';
 
 const API_BASE = `${API_BASE_URL}/api/messages`;
 
@@ -79,10 +80,15 @@ export const messageService = {
         });
       });
       
+      // Cache the users
+      await messageStorage.saveActiveUsers(userId, users);
+      
       return { users, hasMore: false };
     } catch (error) {
       console.error('❌ Frontend Error in getActiveUsers:', error);
-      return { users: [], hasMore: false };
+      // Return cached data if available
+      const cachedUsers = await messageStorage.getActiveUsers(userId);
+      return { users: cachedUsers || [], hasMore: false };
     }
   },
   
@@ -116,30 +122,47 @@ export const messageService = {
         isOnline: Boolean(user.isOnline)
       }));
       
+      // Cache conversations
+      await messageStorage.saveConversations(userId, users);
+      
       return { users, hasMore: false };
     } catch (error) {
       console.error('❌ Error in getConversations:', error);
-      return { users: [], hasMore: false };
+      // Return cached data if available
+      const cachedConversations = await messageStorage.getConversations(userId);
+      return { users: cachedConversations || [], hasMore: false };
     }
   },
 
   // Get messages for a specific chat
   getChatMessages: async (userId: string, chatId: string): Promise<Message[]> => {
-    const response = await axios.get(
-      `${API_BASE}/get_messages.php?current_user_id=${userId}&other_user_id=${chatId}`,
-      {
-        timeout: 10000,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-    const data = response.data;
-    return data.messages.map((msg: Message) => ({
-      ...msg,
-      timestamp: new Date(msg.timestamp),
-    }));
+    try {
+      const response = await axios.get(
+        `${API_BASE}/get_messages.php?current_user_id=${userId}&other_user_id=${chatId}`,
+        {
+          timeout: 10000,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      const data = response.data;
+      const messages = data.messages.map((msg: Message) => ({
+        ...msg,
+        timestamp: new Date(msg.timestamp),
+      }));
+      
+      // Cache messages
+      await messageStorage.saveMessages(userId, chatId, messages);
+      
+      return messages;
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+      // Return cached messages if available
+      const cachedMessages = await messageStorage.getMessages(userId, chatId);
+      return cachedMessages || [];
+    }
   },
 
   // Send a new message
