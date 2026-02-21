@@ -66,7 +66,15 @@
     },
     "plugins": [
       "expo-router",
-      "expo-splash-screen"
+      "expo-splash-screen",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/swu-header.png",
+          "color": "#ffffff",
+          "sounds": ["./assets/sounds/notification_sound.mp3"]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
