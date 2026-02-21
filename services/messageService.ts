@@ -192,6 +192,21 @@ export const messageService = {
     if (!data.success || !data.message) {
       throw new Error(data.error || 'Failed to send message');
     }
+    
+    // Send push notification
+    try {
+      console.log('🔔 Sending push notification...');
+      const pushResponse = await axios.post(`${API_BASE_URL}/api/send_push_notification.php`, {
+        sender_id: message.senderId,
+        receiver_id: message.receiverId,
+        message: message.text,
+        sender_name: data.message.sender_name || 'Someone',
+      });
+      console.log('✅ Push notification sent:', pushResponse.data);
+    } catch (error: any) {
+      console.error('❌ Failed to send push notification:', error.response?.data || error.message);
+    }
+    
     return {
       ...data.message,
       timestamp: new Date(data.message.timestamp),

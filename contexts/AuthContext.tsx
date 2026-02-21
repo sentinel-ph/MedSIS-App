@@ -4,6 +4,7 @@ import Toast from "react-native-toast-message";
 import { API_BASE_URL } from '@/constants/Config';
 import { User, AuthContextType } from '@/@types/auth';
 import axios from 'axios';
+import { registerForPushNotificationsAsync, savePushTokenToServer } from '@/services/pushNotificationService';
 // Context To pass variables 
 const AuthContext = createContext<AuthContextType>({
   user: null,
@@ -57,6 +58,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           //console.log("User loaded from storage:", parsedUser.id);
           // Activate session when user is loaded from storage
           await activateSession(parsedUser.id);
+          
+          // Register push notifications on app start
+          try {
+            const pushToken = await registerForPushNotificationsAsync();
+            if (pushToken) {
+              await savePushTokenToServer(parsedUser.id, pushToken);
+            }
+          } catch (error) {
+            console.error('Error registering push notifications on app start:', error);
+          }
         }
       } catch (err) {
         console.error("Error loading user:", err);
@@ -104,6 +115,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     
     // Activate session on login
     await activateSession(userWithDefaults.id);
+    
+    // Register for push notifications
+    try {
+      const pushToken = await registerForPushNotificationsAsync();
+      if (pushToken) {
+        await savePushTokenToServer(userWithDefaults.id, pushToken);
+      }
+    } catch (error) {
+      console.error('Error registering push notifications:', error);
+    }
     
     //console.log("User stored successfully in AsyncStorage");
   };
