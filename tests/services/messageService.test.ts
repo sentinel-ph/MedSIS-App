@@ -44,14 +44,14 @@ describe('Message Service Tests', () => {
       expect(data.users).toBeDefined();
       expect(data.hasMore).toBe(false);
     });
-    // Test Whether online users can be fetched
+
     it('should pass - getActiveUsers returns online users', async () => {
       const mockResponse = {
         success: true,
         users: [
           { id: '1', name: 'John Doe', isOnline: true },
           { id: '2', name: 'Jane Smith', isOnline: false }
-        ],
+        ],  
         hasMore: false
       };
       
