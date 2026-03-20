@@ -288,6 +288,3 @@ MedSIS-App/
 - ✅ TypeScript implementation for type safety
 
 # MSIS - Medical Student Information System 📱
-
-# Click the Link for the website version: https://msis.eduisync.io/
-test co author 
