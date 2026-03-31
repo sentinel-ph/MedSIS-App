@@ -1,4 +1,5 @@
 // Test utilities without Jest dependencies
+import axios from 'axios';
 import { API_BASE_URL } from '@/constants/Config';
 
 const expect = (actual: any) => ({
@@ -12,11 +13,47 @@ const it = (name: string, fn: () => void | Promise<void>) => fn();
 const beforeEach = (fn: () => void) => fn();
 
 describe('Chat Screen Tests', () => {
-  let mockFetch: any;
+  let mockAxios: any;
 
   beforeEach(() => {
-    mockFetch = { mockResolvedValueOnce: () => {}, mockRejectedValueOnce: () => {} };
-    global.fetch = mockFetch;
+    mockAxios = { mockResolvedValueOnce: () => {}, mockRejectedValueOnce: () => {} };
+    // Simple mock implementations without Jest
+    axios.get = async (url: string) => {
+      if (mockAxios.mockResolvedValueOnce) {
+        const mock = mockAxios.mockResolvedValueOnce;
+        if (typeof mock === 'function') {
+          return await mock(url);
+        }
+      }
+      return { data: {} };
+    };
+    axios.post = async (url: string) => {
+      if (mockAxios.mockResolvedValueOnce) {
+        const mock = mockAxios.mockResolvedValueOnce;
+        if (typeof mock === 'function') {
+          return await mock(url);
+        }
+      }
+      return { data: {} };
+    };
+    axios.put = async (url: string) => {
+      if (mockAxios.mockResolvedValueOnce) {
+        const mock = mockAxios.mockResolvedValueOnce;
+        if (typeof mock === 'function') {
+          return await mock(url);
+        }
+      }
+      return { data: {} };
+    };
+    axios.delete = async (url: string) => {
+      if (mockAxios.mockResolvedValueOnce) {
+        const mock = mockAxios.mockResolvedValueOnce;
+        if (typeof mock === 'function') {
+          return await mock(url);
+        }
+      }
+      return { data: {} };
+    };
   });
 
   describe('Message Operations', () => {
@@ -27,13 +64,12 @@ describe('Chat Screen Tests', () => {
         timestamp: new Date().toISOString()
       };
       
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      } as Response);
+      mockAxios.mockResolvedValueOnce = async () => ({
+        data: mockResponse,
+      });
 
-      const response = await fetch(`${API_BASE_URL}/api/messages/send.php`);
-      const data = await response.json();
+      const response = await axios.post(`${API_BASE_URL}/api/messages/send.php`);
+      const data = response.data;
       
       expect(data.success).toBe(true);
       expect(data.message_id).toBeDefined();
@@ -48,13 +84,12 @@ describe('Chat Screen Tests', () => {
         ]
       };
       
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      } as Response);
+      mockAxios.mockResolvedValueOnce = async () => ({
+        data: mockResponse,
+      });
 
-      const response = await fetch(`${API_BASE_URL}/api/messages/get_messages.php`);
-      const data = await response.json();
+      const response = await axios.get(`${API_BASE_URL}/api/messages/get_messages.php`);
+      const data = response.data;
       
       expect(data.success).toBe(true);
       expect(data.messages.length).toBe(2);
@@ -66,13 +101,12 @@ describe('Chat Screen Tests', () => {
         message: 'Message updated successfully'
       };
       
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      } as Response);
+      mockAxios.mockResolvedValueOnce = async () => ({
+        data: mockResponse,
+      });
 
-      const response = await fetch(`${API_BASE_URL}/api/messages/edit_message.php`);
-      const data = await response.json();
+      const response = await axios.put(`${API_BASE_URL}/api/messages/edit_message.php`);
+      const data = response.data;
       
       expect(data.success).toBe(true);
     });
@@ -83,13 +117,12 @@ describe('Chat Screen Tests', () => {
         message: 'Message unsent successfully'
       };
       
-      mockFetch.mockResolvedValueOnce({
-        ok: true,
-        json: async () => mockResponse,
-      } as Response);
+      mockAxios.mockResolvedValueOnce = async () => ({
+        data: mockResponse,
+      });
 
-      const response = await fetch(`${API_BASE_URL}/api/messages/unsend_message.php`);
-      const data = await response.json();
+      const response = await axios.delete(`${API_BASE_URL}/api/messages/unsend_message.php`);
+      const data = response.data;
       
       expect(data.success).toBe(true);
     });
