@@ -24,6 +24,18 @@
 
 A comprehensive mobile application designed specifically for medical students to upload academic requirements, view evaluation results history, and manage their educational journey. This first version release focuses on streamlined document submission, evaluation tracking, and essential academic tools with AI assistance and real-time communication features.
 
+### 🧠 ML-Powered Image Quality Validation
+MedSIS features an intelligent validation pipeline that utilizes Laplacian variance parsing to guarantee the legibility of academic records.
+
+```mermaid
+graph TD
+    A[Student Selects Document] -->|expo-image-picker| B(Local Device Parsing)
+    B --> C{Laplacian Variance Check}
+    C -->|Score < 100| D[❌ Reject: 'Image is too blurry']
+    C -->|Score >= 100| E[✅ Accept: Secure Token Generation]
+    E --> F[(Backend Secure Storage)]
+```
+
 ## 📱 Download APK
 
 **Ready to install?** Download the latest APK build:
