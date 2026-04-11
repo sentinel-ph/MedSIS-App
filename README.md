@@ -25,15 +25,18 @@
 A comprehensive mobile application designed specifically for medical students to upload academic requirements, view evaluation results history, and manage their educational journey. This first version release focuses on streamlined document submission, evaluation tracking, and essential academic tools with AI assistance and real-time communication features.
 
 ### 🧠 ML-Powered Image Quality Validation
-MedSIS features an intelligent validation pipeline that utilizes Laplacian variance parsing to guarantee the legibility of academic records.
+MedSIS features an intelligent validation pipeline that utilizes a dedicated Machine Learning microservice to guarantee the legibility of academic records.
+
+When a student selects a document, it is seamlessly routed to the validation endpoint. This microservice computes the image's Laplacian variance to calculate a clarity confidence score. If the system rejects the quality due to blurriness, the upload is blocked and instant UI feedback is provided. If the system accepts the quality, the transaction generates a secure token and commits the document to storage.
 
 ```mermaid
 graph TD
-    A[Student Selects Document] -->|expo-image-picker| B(Local Device Parsing)
-    B --> C{Laplacian Variance Check}
-    C -->|Score < 100| D[❌ Reject: 'Image is too blurry']
-    C -->|Score >= 100| E[✅ Accept: Secure Token Generation]
-    E --> F[(Backend Secure Storage)]
+    A[Student Selects Document] -->|expo-image-picker| B(Send to Validation Microservice)
+    B -->|API Interaction| C{ML Validation Endpoint}
+    C -->|Quality Score < 100| D[❌ Reject: 'Image is too blurry']
+    D -.->|Real-time Error UI| A
+    C -->|Quality Score >= 100| E[✅ Accept: Image Quality Verified]
+    E -->|Generate Access Token| F[(Backend Secure Storage)]
 ```
 
 ## 📱 Download APK
